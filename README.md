@@ -1,2 +1,1 @@
-# bop-it
-jr design bop-it project
+Hello world tutorial README
