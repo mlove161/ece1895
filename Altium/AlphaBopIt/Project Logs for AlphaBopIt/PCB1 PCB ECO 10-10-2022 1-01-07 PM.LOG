@@ -1,0 +1,13 @@
+Change Component Footprint: Designator=H0 Old Footprint=HDR2X7 New Footprint=HDR2X8
+Change Component Comment : Designator=H0 Old Comment=Header 7X2 New Comment=Header 8X2
+Change component parameters: Designator = "R0" ("R0"); Footprint = "AXIAL-0.3"; UniqueID = "\ATYMCJHC" ("\ATYMCJHC")
+Change component parameters (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "PackageDescription"; Value = "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "PackageReference"; Value = "AXIAL-0.3"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = "10K"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=5V Pin=H0-15
+Added Pin To Net: NetName=GND Pin=H0-16
+Added Room: Name=Sheet1
