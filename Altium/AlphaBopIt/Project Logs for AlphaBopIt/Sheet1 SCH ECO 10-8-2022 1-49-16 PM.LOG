@@ -1,0 +1,5 @@
+Change Component Designator: OldDesignator=P1 NewDesignator=AVR
+Change Component Designator: OldDesignator=P2 NewDesignator=Analog In
+Change Component Designator: OldDesignator=P3 NewDesignator=Digital
+Change Component Designator: OldDesignator=P4 NewDesignator=Digital
+Change Component Designator: OldDesignator=P5 NewDesignator=Sensor Power
