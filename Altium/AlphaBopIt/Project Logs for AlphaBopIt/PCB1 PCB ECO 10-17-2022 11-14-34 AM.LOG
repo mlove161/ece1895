@@ -1,0 +1,9 @@
+Change Component Footprint: Designator=D0 Old Footprint=3.2X1.6X1.1 New Footprint=LED-0
+Change Component Comment : Designator=D0 Old Comment=LED2 New Comment=LED0
+Change component parameters: Designator = "D0" ("D0"); Footprint = "3.2X1.6X1.1"; UniqueID = "\ULRNCJUE" ("\ULRNCJUE")
+Change component parameters (AddParameter): Name = "LatestRevisionDate"; Value = "08-Jul-2005"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "LatestRevisionNote"; Value = "Mech Layer 1 removed."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "PackageDescription"; Value = "LED; 2 Leads"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "PackageReference"; Value = "LED-0"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
