@@ -7,11 +7,11 @@ MD_YX5300 mp3(Serial);
 
 void setup() {
   // put your setup code here, to run once:
-  delay(1000);
+  delay(2000);
   Serial.begin(9600);
   mp3.begin();
   mp3.setSynchronous(true);
-  mp3.volumeMax();
+  mp3.volume(mp3.volumeMax());
   mp3.playTrack(001);
 }
 
