@@ -1,5 +1,6 @@
 #include <MD_YX5300.h>
 #include <LiquidCrystal_I2C.h>
+#include <stdlib.h>
 
 MD_YX5300 mp3(Serial);
 LiquidCrystal_I2C lcd(0x27, 16, 2); //address, char width, height
@@ -7,14 +8,25 @@ const uint8_t ARDUINO_RX = 0;  // connect to TX of MP3 Player module
 const uint8_t ARDUINO_TX = 1; // connect to RX of MP3 Player module
 
 
+//TODO: 
+//randomize 3 function calls
+//specify to user which command to execute
+//add start condition
+//add lose/end game function
+//add win condition
+//add score
+//standardize delay times, shrink delay times over time
+
+
 //prototypes
 void drive_it();
 void gas_it();
 void shift_it();
 
+//pins
 int potPin = 0;
 int togPin = 13;
-int stompPin = 9;
+int stompPin = 13;
 
 
 void setup() {
@@ -40,7 +52,6 @@ void setup() {
   mp3.begin();
   mp3.setSynchronous(true);
   mp3.volumeMax();
-
 }
 
 
@@ -52,14 +63,17 @@ void loop() {
   digitalWrite(9, LOW);
   digitalWrite(8, LOW);
   //delay(2000);*/
+  
+  lcd.clear();
+  delay(1000);
 
   lcd.print("start");
   delay(1000);
   lcd.clear();
   
-  drive_it();
+  //drive_it();
   //shift_it();
-  //gas_it();
+  gas_it();
 
   delay(2000);
   lcd.clear();
@@ -87,11 +101,21 @@ void shift_it(){
   int last_state = digitalRead(togPin);
   delay(5000);
   
-  if(digitalRead(togPin) != last_state){
-    lcd.print("winner");
+  if(last_state == HIGH){
+    if(digitalRead(togPin) == LOW){
+      lcd.print("winner");
+    }
+    else{
+      lcd.print("loser");
+    }
   }
   else{
-    lcd.print("loser");
+    if(digitalRead(togPin) == HIGH){
+      lcd.print("winner");
+    }
+    else{
+      lcd.print("loser");
+    }
   }
 }
 
@@ -101,11 +125,21 @@ void gas_it(){
   int last_state = digitalRead(stompPin);
   delay(5000);
   
-  if(digitalRead(stompPin) != last_state){
-     lcd.print("winner");
+  if(last_state == HIGH){
+    if(digitalRead(stompPin) == LOW){
+      lcd.print("winner");
+    }
+    else{
+      lcd.print("loser");
+    }
   }
   else{
-     lcd.print("loser");
+    if(digitalRead(stompPin) == HIGH){
+      lcd.print("winner");
+    }
+    else{
+      lcd.print("loser");
+    }
   }
   
 }
