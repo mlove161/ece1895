@@ -1,0 +1,10 @@
+Board Information Report
+Filename     : C:\Users\theab\Documents\School\Junior_Design\Bop_It\hello-world\Altium\AlphaBopIt\PCB1.PcbDoc
+Date         : 10/21/2022
+Time         : 11:02:34 AM
+Time Elapsed : 00:00:00
+
+General
+    Board Size, 4500milsx2355mils
+    Components on board, 17
+count : 2

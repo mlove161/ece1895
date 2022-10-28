@@ -22,7 +22,7 @@ bool shift_it();
 
 //pins
 int wheelPin = 0;
-int togPin = 13;
+int togPin = 10;
 int stompPin = 9;
 int seedPin = 1;
 
