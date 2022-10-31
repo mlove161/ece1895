@@ -1,6 +1,7 @@
 #include <MD_YX5300.h>
 #include <LiquidCrystal_I2C.h>
 #include <stdlib.h>
+#include <EEPROM.h>
 
 MD_YX5300 mp3(Serial);
 LiquidCrystal_I2C lcd(0x27, 16, 2); //address, char width, height
@@ -27,7 +28,8 @@ int stompPin = 9;
 int seedPin = 1;
 
 //consts 
-int highScore = 10;
+int highScore = 99;
+
 
 
 void setup() {
@@ -50,6 +52,8 @@ void setup() {
 
   //seed random number
   randomSeed(analogRead(seedPin));
+  EEPROM.write(1, 0);
+
 }
 
 
@@ -66,7 +70,9 @@ void loop() {
     lcd.print("to start!");
     lcd.setCursor(0, 0);
     
-    //delay(1000); //flip switch to start game
+    delay(200); //flip switch to start game? 
+    lcd.clear();
+    delay(2000);  //flip switch in this delay - add LCD prompt? 
     startGame = (switchPin != digitalRead(togPin)); 
   }
 
@@ -104,11 +110,13 @@ void loop() {
       lcd.print(String("Point! Score: ") +  String(score));
       delay(1000);
       lcd.clear();
+      print("Point! Score: %d", score);
       if(score == highScore)
       {
         lcd.print("You win!");
         delay(1000);
         lcd.clear();
+        break;
       }
     }
     else
@@ -116,6 +124,14 @@ void loop() {
       lcd.print("You lose!! </3");
       delay(1000);
       lcd.clear();
+      //if lose, check if high score is written
+      unsigned int temp = EEPROM.read(1);
+      //score = local score for instance
+      // high score = 99
+      if(score > temp)
+      {
+        EEPROM.update(1, score);
+      }
       break;
     }
   }
