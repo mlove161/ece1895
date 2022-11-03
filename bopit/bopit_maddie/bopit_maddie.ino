@@ -71,7 +71,7 @@ void loop() {
     lcd.print("to start!");
     lcd.setCursor(0, 0);
     
-    delay(200); //flip switch to start game? 
+    delay(2000); //flip switch to start game? 
     lcd.clear();
     delay(2000);  //flip switch in this delay - add LCD prompt? 
     startGame = (switchPin != digitalRead(togPin)); 
@@ -115,7 +115,7 @@ void loop() {
       lcd.print(String("Point! Score: ") +  String(score));
       delay(1000);
       lcd.clear();
-      print("Point! Score: %d", score);
+      //print("Point! Score: %d", score);
       gameTime *= 0.95;
       if(score == highScore)
       {
