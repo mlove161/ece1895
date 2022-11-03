@@ -17,9 +17,9 @@ const uint8_t ARDUINO_TX = 1; // connect to RX of MP3 Player module
 
 
 //prototypes
-bool drive_it();
-bool gas_it();
-bool shift_it();
+bool drive_it(int t);
+bool gas_it(int t);
+bool shift_it(int t);
 
 //pins
 int wheelPin = 0;
@@ -29,6 +29,7 @@ int seedPin = 1;
 
 //consts 
 int highScore = 99;
+int time = 5;
 
 
 
@@ -75,6 +76,7 @@ void loop() {
     delay(2000);  //flip switch in this delay - add LCD prompt? 
     startGame = (switchPin != digitalRead(togPin)); 
   }
+  int gameTime = time;
 
   //delay(1000);
   //lcd.print("Starting engine! Ready...");
@@ -83,22 +85,22 @@ void loop() {
   
   int score = 0;
   bool success = false;
-  while (score <=10)
+  while (score <=highScore)
   {
     int task = (int)random(1,4); 
     switch (task)
     {
       case 1:
         lcd.print("Gas it");
-        success = gas_it();
+        success = gas_it(gameTime);
         break;
       case 2:
         lcd.print("Shift it");
-        success = shift_it();
+        success = shift_it(gameTime);
         break;
       case 3:
         lcd.print("Steer it");
-        success = drive_it();
+        success = drive_it(gameTime);
         break;
     }
     lcd.clear();
@@ -111,6 +113,7 @@ void loop() {
       delay(1000);
       lcd.clear();
       print("Point! Score: %d", score);
+      gameTime *= 0.95;
       if(score == highScore)
       {
         lcd.print("You win!");
@@ -142,25 +145,25 @@ void loop() {
 
 
 //ACTION 1: DRIVE IT: POTENTIOMETER
-bool drive_it(){
+bool drive_it(int gameTime){
   double last_volt = analogRead(wheelPin);
-  delay(5000);
+  delay(gameTime);
   return (abs(last_volt - analogRead(wheelPin)) > 100);
 }
 
 
 //ACTION 2: SHIFT IT: TOGGLE SWITCH
-bool shift_it(){
+bool shift_it(int gameTime){
   int last_state = digitalRead(togPin);
-  delay(5000);
+  delay(gameTime);
   return (last_state != digitalRead(togPin));
 }
 
 
 //ACTION 3: GAS IT: BUTTON PRESS 
-bool gas_it(){
+bool gas_it(int gameTime){
   int last_state = digitalRead(stompPin);
-  delay(5000);
+  delay(gameTime);
   return (last_state != digitalRead(stompPin));
   
 }
