@@ -92,14 +92,17 @@ void loop() {
     {
       case 1:
         lcd.print("Gas it");
+        mp3.playTrack(1);
         success = gas_it(gameTime);
         break;
       case 2:
         lcd.print("Shift it");
+        mp3.playTrack(2);
         success = shift_it(gameTime);
         break;
       case 3:
         lcd.print("Steer it");
+        mp3.playTrack(3);
         success = drive_it(gameTime);
         break;
     }
@@ -127,6 +130,7 @@ void loop() {
       lcd.print("You lose!! </3");
       delay(1000);
       lcd.clear();
+      mp3.playTrack(4);
       //if lose, check if high score is written
       unsigned int temp = EEPROM.read(1);
       //score = local score for instance
