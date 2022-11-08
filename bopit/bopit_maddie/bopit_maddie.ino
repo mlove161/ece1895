@@ -28,8 +28,9 @@ int stompPin = 9;
 int seedPin = 1;
 
 //consts 
-int highScore = 99;
-int time = 5;
+int winScore = 99;
+//int highScore = 0;
+int time = 5000;
 
 
 
@@ -49,11 +50,11 @@ void setup() {
   Serial.begin(9600);
   mp3.begin();
   mp3.setSynchronous(true);
-  mp3.volumeMax();
+  mp3.volume(mp3.volumeMax());
 
   //seed random number
   randomSeed(analogRead(seedPin));
-  EEPROM.write(1, 0);
+ // EEPROM.write(1, 0);
 
 }
 
@@ -76,33 +77,31 @@ void loop() {
     delay(2000);  //flip switch in this delay - add LCD prompt? 
     startGame = (switchPin != digitalRead(togPin)); 
   }
+  
   int gameTime = time;
-
-  //delay(1000);
-  //lcd.print("Starting engine! Ready...");
   delay(1000);
   lcd.clear();
   
   int score = 0;
   bool success = false;
-  while (score <=highScore)
+  while (score <= winScore)
   {
     int task = (int)random(1,4); 
     switch (task)
     {
       case 1:
         lcd.print("Gas it");
-        mp3.playTrack(1);
+        mp3.playTrack(004);
         success = gas_it(gameTime);
         break;
       case 2:
         lcd.print("Shift it");
-        mp3.playTrack(2);
+        mp3.playTrack(001);
         success = shift_it(gameTime);
         break;
       case 3:
         lcd.print("Steer it");
-        mp3.playTrack(3);
+        mp3.playTrack(002);
         success = drive_it(gameTime);
         break;
     }
@@ -115,9 +114,8 @@ void loop() {
       lcd.print(String("Point! Score: ") +  String(score));
       delay(1000);
       lcd.clear();
-      //print("Point! Score: %d", score);
       gameTime *= 0.95;
-      if(score == highScore)
+      if(score >= winScore)
       {
         lcd.print("You win!");
         delay(1000);
@@ -130,15 +128,31 @@ void loop() {
       lcd.print("You lose!! </3");
       delay(1000);
       lcd.clear();
-      mp3.playTrack(4);
+      
       //if lose, check if high score is written
-      unsigned int temp = EEPROM.read(1);
+      unsigned int highScore = EEPROM.read(1);
+      if (highScore > 99 || highScore < 0){
+        highScore = 0;
+      }
       //score = local score for instance
       // high score = 99
-      if(score > temp)
+      /*if(score > temp)
       {
         EEPROM.update(1, score);
+      }*/
+      if(score > highScore)
+      {
+        EEPROM.update(1, score);
+        lcd.print("New high score!");
+        lcd.setCursor(0, 1);
+        lcd.print(String(score));
+        lcd.setCursor(0, 0);
+        //delay(5000);
+        //lcd.clear();
       }
+      mp3.playTrack(003);
+      delay(11000);
+      lcd.clear();
       break;
     }
   }
